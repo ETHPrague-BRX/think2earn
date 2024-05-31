@@ -5,9 +5,13 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
+
 🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols.  
 
-/ add photos from Imagenet-EEG
+![image](https://github.com/ETHPrague-BRX/think2earn/assets/83903147/c6f32b8e-c1a4-4962-b6ef-15f9d70afe71)
+
+In the images above, on the right column, Ground Truth (GT) represents the images that had been seen by participants while wearing a non-invasive EEG BCI. 
+Samples 1 through 3 were outputted by the model without "seeing" the GT - showing that visual stimuli can be decoded from EEG data. [Image source](https://arxiv.org/pdf/2306.16934).  
 
 ### Mega Description
 
