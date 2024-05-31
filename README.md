@@ -1,9 +1,13 @@
-# 🏗 Scaffold-ETH 2
+# 🧠 Think2Earn ♦ 
 
 <h4 align="center">
   <a href="https://docs.scaffoldeth.io">Documentation</a> |
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
+
+🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols. A boilerplate contract is added to ETH-Scaffold 2, an open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+
+# 🏗 Scaffold-ETH 2
 
 🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
 
@@ -32,8 +36,8 @@ To get started with Scaffold-ETH 2, follow the steps below:
 1. Clone this repo & install dependencies
 
 ```
-git clone https://github.com/scaffold-eth/scaffold-eth-2.git
-cd scaffold-eth-2
+git clone git@github.com:ETHPrague-BRX/think2earn.git
+cd think2earn
 yarn install
 ```
 
