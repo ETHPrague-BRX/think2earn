@@ -7,7 +7,7 @@
 
 🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols.  
 
-# add photos from Imagenet-EEG
+/ add photos from Imagenet-EEG
 
 ### Mega Description
 
