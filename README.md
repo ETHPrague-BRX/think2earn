@@ -45,20 +45,6 @@ The platform supports the creation and management of bounties with detailed attr
 
 This platform is a crypto marketplace for buying and selling BCI data, benefiting both data buyers looking to enhance their models and BCI owners seeking to monetize their data. Inspired by Vitalik's blogpost on techno-optimism, it leverages incentives to create datasets that can be used for decoding brain inputs and controlling hardware, eventually minimizing the feedback loop between humans and machines. 
 
-# 🏗 Scaffold-ETH 2
-
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
-
-⚙️ Built using NextJS, RainbowKit, Hardhat, Wagmi, Viem, and Typescript.
-
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
-
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
-
 ## Requirements
 
 Before you begin, you need to install the following tools:
