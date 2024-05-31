@@ -5,7 +5,45 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
-🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols. A boilerplate contract is added to ETH-Scaffold 2, an open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols.  
+
+# add photos from Imagenet-EEG
+
+### Mega Description
+
+This smart contract system provides a decentralized platform for BCI (Brain-Computer Interface) data transactions, designed to benefit both data buyers and BCI owners. It allows data buyers to request and gather diverse datasets to improve their existing models, while providing a mechanism for BCI owners to get paid for their data contributions.
+
+#### For BCI Data Buyers:
+
+Data buyers can create bounties on the platform to request specific types of data, including photos, videos, text, and audio. These bounties are designed to collect BCI data from participants who engage with the requested media content. The collected BCI data can then be used to enhance the buyer's models, improving classification capabilities or other aspects of their data-driven projects.
+
+#### For BCI Owners:
+
+BCI owners can visit the platform and browse available bounties. They can participate by watching the provided media content and uploading their BCI data. If the uploaded data is deemed valuable and improves the buyer's model, the bounty creator can decide to pay the BCI owner. This decision is based on the buyer's assessment of the data's utility, thus requiring some level of trust from the seller.
+
+#### Bounty Management:
+
+The platform supports the creation and management of bounties with detailed attributes:
+
+
+#### Workflow:
+
+1. **Creating Bounties**:
+   - Data buyers create bounties by specifying all required details, including the type of data needed and the reward amount.
+   - These bounties are stored on-chain, with descriptions possibly linked to external resources for detailed information.
+
+2. **Participating in Bounties**:
+   - BCI owners select bounties of interest, engage with the specified media content, and collect their BCI data.
+   - They then submit/upload this data through the platform, associating it with the relevant bounty.
+
+3. **Evaluating Submissions**:
+   - The bounty creator reviews the submissions within the specified judge time.
+   - If a submission is found to improve the classification capability of the model, the bounty creator can approve and pay the participant. Trust required in the Bounty Creator. 
+   - Payment is made in Ether, directly transferred to the participant's address.
+
+### Summary
+
+This platform is a crypto marketplace for buying and selling BCI data, benefiting both data buyers looking to enhance their models and BCI owners seeking to monetize their data. Inspired by Vitalik's blogpost on techno-optimism, it leverages incentives to create datasets that can be used for decoding brain inputs and controlling hardware, eventually minimizing the feedback loop between humans and machines. 
 
 # 🏗 Scaffold-ETH 2
 
