@@ -14,13 +14,29 @@ contract YourContract is Ownable, ReentrancyGuard {
         bool eegDataSubmitted;  // Indicates if EEG data has been submitted
     }
 
+    struct Bounty {
+        string name;
+        string description;     // IPFS hash or YouTube link
+        uint256 reward;
+        uint256 duration;       // in blocks
+        uint256 judgeTime;      // in blocks
+        uint256 maxProgress;    // max number of participants
+        address creator;
+        uint256 creationBlock;
+        bool isActive;
+    }
+
     mapping(uint256 => Submission) public submissions;
+    mapping(uint256 => Bounty) public bounties;
     uint256 public submissionCount = 1; // Start counting submissions from 1
+    uint256 public bountyCount = 1;     // Start counting bounties from 1
 
     event MediaSent(uint256 indexed submissionId, bytes32 mediaURIHash, address indexed recipient);
     event EEGDataSubmitted(uint256 indexed submissionId, bytes32 eegDataHash);
     event EtherDeposited(address indexed sender, uint256 amount);
     event PaymentMade(uint256 indexed submissionId, uint256 amount);
+    event BountyCreated(uint256 indexed bountyId, string name, string description, uint256 reward, uint256 duration, uint256 judgeTime, uint256 maxProgress, address indexed creator);
+    event BountyCompleted(uint256 indexed bountyId, address indexed winner);
 
     constructor(address initialOwner) {
         transferOwnership(initialOwner);
@@ -85,5 +101,72 @@ contract YourContract is Ownable, ReentrancyGuard {
 
     function getBalance() public view returns (uint256) {
         return address(this).balance;
+    }
+
+    function createBounty(
+        string memory _name,
+        string memory _description,
+        uint256 _reward,
+        uint256 _duration,
+        uint256 _judgeTime,
+        uint256 _maxProgress
+    ) external onlyOwner {
+        require(bytes(_name).length > 0, "Bounty name cannot be empty");
+        require(bytes(_description).length > 0, "Bounty description cannot be empty");
+        require(_reward > 0, "Bounty reward must be greater than zero");
+        require(_duration > 0, "Bounty duration must be greater than zero");
+
+        bounties[bountyCount] = Bounty({
+            name: _name,
+            description: _description,
+            reward: _reward,
+            duration: _duration,
+            judgeTime: _judgeTime,
+            maxProgress: _maxProgress,
+            creator: msg.sender,
+            creationBlock: block.number,
+            isActive: true
+        });
+
+        emit BountyCreated(bountyCount, _name, _description, _reward, _duration, _judgeTime, _maxProgress, msg.sender);
+        bountyCount++;
+    }
+
+    function completeBounty(uint256 _bountyId, address _winner) external onlyOwner nonReentrant {
+        Bounty storage bounty = bounties[_bountyId];
+        require(bounty.isActive, "Bounty is not active");
+        require(block.number >= bounty.creationBlock + bounty.duration, "Bounty duration not yet passed");
+        require(bounty.reward <= address(this).balance, "Insufficient contract balance to reward");
+
+        bounty.isActive = false;
+        (bool sent, ) = _winner.call{value: bounty.reward}("");
+        require(sent, "Failed to send Ether");
+
+        emit BountyCompleted(_bountyId, _winner);
+    }
+
+    function getBountyDetails(uint256 _bountyId) external view returns (
+        string memory name,
+        string memory description,
+        uint256 reward,
+        uint256 duration,
+        uint256 judgeTime,
+        uint256 maxProgress,
+        address creator,
+        uint256 creationBlock,
+        bool isActive
+    ) {
+        Bounty storage bounty = bounties[_bountyId];
+        return (
+            bounty.name,
+            bounty.description,
+            bounty.reward,
+            bounty.duration,
+            bounty.judgeTime,
+            bounty.maxProgress,
+            bounty.creator,
+            bounty.creationBlock,
+            bounty.isActive
+        );
     }
 }
