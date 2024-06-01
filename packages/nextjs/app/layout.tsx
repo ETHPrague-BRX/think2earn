@@ -12,10 +12,15 @@ export const metadata = getMetadata({
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   return (
     <html suppressHydrationWarning lang="en">
-      <body>
-        <ThemeProvider enableSystem>
-          <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
-        </ThemeProvider>
+      <body className="w-[100vw] overflow-hidden">
+        <video className="fixed absolute z-0 top-[0px] left-0 scale-150 overflow-hidden" autoPlay muted loop>
+          <source src="/animation.mp4" type="video/mp4"></source>
+        </video>
+        <div className="bg-[#000000a3]">
+          <ThemeProvider enableSystem>
+            <ScaffoldEthAppWithProviders>{children}</ScaffoldEthAppWithProviders>
+          </ThemeProvider>
+        </div>
       </body>
     </html>
   );

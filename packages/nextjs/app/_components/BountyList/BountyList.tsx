@@ -3,17 +3,22 @@ import Backdrop from "../Backdrop/Backdrop";
 import Bounty, { BountyProps } from "../Bounty/Bounty";
 import BountyInfo from "../BountyInfo";
 import { AnimatePresence, motion } from "framer-motion";
+import useBounties from "~~/hooks/useBounties";
 
 type BountyListProps = {
   bounties: BountyProps[];
 };
 
-const BountyList: React.FC<BountyListProps> = ({ bounties }) => {
+const BountyList: React.FC<BountyListProps> = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
+  const { bounties, bountyCount } = useBounties();
+
+  console.log(bounties);
+
   return (
-    <div className="p-8">
-      <h2 className="text-3xl mb-8">Current bounties</h2>
+    <div className="p-8 w-[100%]">
+      <p className="text-left ml-0">{parseInt(bountyCount)} bounties found</p>
       <div className="flex gap-4 flex-wrap items-center justify-between">
         {bounties.map((bounty, i) => {
           return (

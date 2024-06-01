@@ -5,4 +5,5 @@ export type Bounty = {
   reward: number;
   duration: string;
   maxProgress: number;
+  progress: number;
 };

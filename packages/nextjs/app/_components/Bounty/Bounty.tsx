@@ -17,7 +17,7 @@ const Bounty: React.FC<BountyProps> = ({ title, description, creator, reward, du
     >
       <div>
         <h3 className="text-xl">{title}</h3>
-        <p className="text-md text-slate-300">by {creator}</p>
+        <p className="text-md text-slate-300 line-clamp-1 text-ellipsis">{creator}</p>
         <p className="text-sm h-[100px] line-clamp-4 text-slate-400">{description}</p>
       </div>
       <div className="flex flex-col gap-1 mb-4">

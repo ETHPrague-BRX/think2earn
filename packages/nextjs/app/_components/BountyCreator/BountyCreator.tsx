@@ -21,7 +21,9 @@ const BountyCreator = () => {
         {openCreator && (
           <motion.div>
             <Backdrop onClick={() => setOpenCreator(false)}>
-              <div>Hello</div>
+              <div
+                className={`flex flex-col gap-2 bg-slate-800 p-10 w-[100%] minh-[400px] rounded justify-between`}
+              ></div>
             </Backdrop>
           </motion.div>
         )}
