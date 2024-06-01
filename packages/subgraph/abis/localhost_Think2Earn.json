@@ -107,9 +107,9 @@
       },
       {
         "indexed": false,
-        "internalType": "bytes32",
+        "internalType": "bytes",
         "name": "eegDataHash",
-        "type": "bytes32"
+        "type": "bytes"
       }
     ],
     "name": "EEGDataSubmitted",
@@ -200,7 +200,7 @@
       },
       {
         "internalType": "string",
-        "name": "mediaURIHash",
+        "name": "mediaURI",
         "type": "string"
       },
       {
@@ -342,7 +342,7 @@
           },
           {
             "internalType": "string",
-            "name": "mediaURIHash",
+            "name": "mediaURI",
             "type": "string"
           },
           {
@@ -388,9 +388,9 @@
                 "type": "address"
               },
               {
-                "internalType": "bytes32",
+                "internalType": "bytes",
                 "name": "eegDataHash",
-                "type": "bytes32"
+                "type": "bytes"
               }
             ],
             "internalType": "struct Think2EarnBountyFactoryV1.Submission[]",
@@ -516,9 +516,9 @@
             "type": "address"
           },
           {
-            "internalType": "bytes32",
+            "internalType": "bytes",
             "name": "eegDataHash",
-            "type": "bytes32"
+            "type": "bytes"
           }
         ],
         "internalType": "struct Think2EarnBountyFactoryV1.Submission",
@@ -550,9 +550,9 @@
         "type": "uint256"
       },
       {
-        "internalType": "bytes32",
+        "internalType": "bytes",
         "name": "_eegDataHash",
-        "type": "bytes32"
+        "type": "bytes"
       }
     ],
     "name": "submitEEGData",

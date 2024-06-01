@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Think2Earn: {
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
       abi: [
         {
           inputs: [],
@@ -117,9 +117,9 @@ const deployedContracts = {
             },
             {
               indexed: false,
-              internalType: "bytes32",
+              internalType: "bytes",
               name: "eegDataHash",
-              type: "bytes32",
+              type: "bytes",
             },
           ],
           name: "EEGDataSubmitted",
@@ -210,7 +210,7 @@ const deployedContracts = {
             },
             {
               internalType: "string",
-              name: "mediaURIHash",
+              name: "mediaURI",
               type: "string",
             },
             {
@@ -352,7 +352,7 @@ const deployedContracts = {
                 },
                 {
                   internalType: "string",
-                  name: "mediaURIHash",
+                  name: "mediaURI",
                   type: "string",
                 },
                 {
@@ -398,9 +398,9 @@ const deployedContracts = {
                       type: "address",
                     },
                     {
-                      internalType: "bytes32",
+                      internalType: "bytes",
                       name: "eegDataHash",
-                      type: "bytes32",
+                      type: "bytes",
                     },
                   ],
                   internalType: "struct Think2EarnBountyFactoryV1.Submission[]",
@@ -526,9 +526,9 @@ const deployedContracts = {
                   type: "address",
                 },
                 {
-                  internalType: "bytes32",
+                  internalType: "bytes",
                   name: "eegDataHash",
-                  type: "bytes32",
+                  type: "bytes",
                 },
               ],
               internalType: "struct Think2EarnBountyFactoryV1.Submission",
@@ -560,9 +560,588 @@ const deployedContracts = {
               type: "uint256",
             },
             {
-              internalType: "bytes32",
+              internalType: "bytes",
               name: "_eegDataHash",
-              type: "bytes32",
+              type: "bytes",
+            },
+          ],
+          name: "submitEEGData",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "submissionId",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          stateMutability: "payable",
+          type: "receive",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+  11155420: {
+    Think2Earn: {
+      address: "0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "bountyId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "numAcceptedSubmissions",
+              type: "uint256",
+            },
+          ],
+          name: "BountyCompleted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "bountyId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "mediaURI",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "reward",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "duration",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "judgeTime",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "maxProgress",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+          ],
+          name: "BountyCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "bountyId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "submissionId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "submitter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "bytes",
+              name: "eegDataHash",
+              type: "bytes",
+            },
+          ],
+          name: "EEGDataSubmitted",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "EtherDeposited",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "bountyId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "submissionId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+          ],
+          name: "PaymentMade",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "activeBountyIds",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "bounties",
+          outputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "mediaURI",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "reward",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "duration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "judgeTime",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "maxProgress",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "creationBlock",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+            {
+              internalType: "bool",
+              name: "isActive",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "bountyCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_bountyId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256[]",
+              name: "acceptedSubmissions",
+              type: "uint256[]",
+            },
+          ],
+          name: "completeBounty",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_mediaURI",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "_duration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_judgeTime",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_maxProgress",
+              type: "uint256",
+            },
+          ],
+          name: "createBounty",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getActiveBounties",
+          outputs: [
+            {
+              internalType: "uint256[]",
+              name: "",
+              type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getBounties",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "name",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "mediaURI",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "reward",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "duration",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "judgeTime",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "maxProgress",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "creationBlock",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "creator",
+                  type: "address",
+                },
+                {
+                  internalType: "bool",
+                  name: "isActive",
+                  type: "bool",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "address",
+                      name: "submitter",
+                      type: "address",
+                    },
+                    {
+                      internalType: "bytes",
+                      name: "eegDataHash",
+                      type: "bytes",
+                    },
+                  ],
+                  internalType: "struct Think2EarnBountyFactoryV1.Submission[]",
+                  name: "submissions",
+                  type: "tuple[]",
+                },
+              ],
+              internalType: "struct Think2Earn.Bounty[]",
+              name: "",
+              type: "tuple[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getBountyCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_bountyId",
+              type: "uint256",
+            },
+          ],
+          name: "getBountyDetails",
+          outputs: [
+            {
+              internalType: "string",
+              name: "name",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "description",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "mediaURI",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "reward",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "duration",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "judgeTime",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "maxProgress",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "creator",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "creationBlock",
+              type: "uint256",
+            },
+            {
+              internalType: "bool",
+              name: "isActive",
+              type: "bool",
+            },
+            {
+              internalType: "uint256",
+              name: "submissionsLength",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "currentProgress",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_bountyId",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_submissionId",
+              type: "uint256",
+            },
+          ],
+          name: "getBountySubmissions",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "address",
+                  name: "submitter",
+                  type: "address",
+                },
+                {
+                  internalType: "bytes",
+                  name: "eegDataHash",
+                  type: "bytes",
+                },
+              ],
+              internalType: "struct Think2EarnBountyFactoryV1.Submission",
+              name: "",
+              type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getVersion",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_bountyId",
+              type: "uint256",
+            },
+            {
+              internalType: "bytes",
+              name: "_eegDataHash",
+              type: "bytes",
             },
           ],
           name: "submitEEGData",
