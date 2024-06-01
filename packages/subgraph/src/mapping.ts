@@ -13,7 +13,7 @@ export function handleBountyCreated(event: BountyCreated): void {
   let bounty = new Bounty(event.params.bountyId.toString());
   bounty.name = event.params.name;
   bounty.description = event.params.description;
-  bounty.mediaURIHash = event.params.mediaURIHash;
+  bounty.mediaURIHash = event.params.mediaURI;
   bounty.reward = event.params.reward;
   bounty.duration = event.params.duration;
   bounty.judgeTime = event.params.judgeTime;
@@ -21,6 +21,7 @@ export function handleBountyCreated(event: BountyCreated): void {
   bounty.creator = event.params.creator;
   bounty.creationBlock = event.block.number;
   bounty.isActive = true;
+  bounty.numAcceptedSubmissions = BigInt.fromI32(1) ;
 
   bounty.save();
 }
