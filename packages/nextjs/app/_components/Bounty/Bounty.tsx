@@ -1,6 +1,6 @@
-import { useRef, useState } from "react";
 import styles from "./Bounty.module.scss";
-import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
+import { IoIosLock } from "react-icons/io";
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { Bounty as BountyType } from "~~/types/bounty";
 
 export type BountyProps = BountyType & {
@@ -8,6 +8,9 @@ export type BountyProps = BountyType & {
 };
 
 const Bounty: React.FC<BountyProps> = ({ title, description, creator, reward, duration, progress, maxProgress }) => {
+  const joined = Math.random() > 0.5 ? false : true;
+  const finished = progress >= maxProgress;
+
   return (
     <div
       className={`${styles.Bounty} flex flex-col gap-2 bg-slate-800 p-10 w-[300px] minh-[400px] rounded justify-between`}
@@ -24,8 +27,18 @@ const Bounty: React.FC<BountyProps> = ({ title, description, creator, reward, du
         <label>Reward: {reward} ETH</label>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="m-auto text-sm">Ends in 3d 7h 41min</p>
-        <button className={`bg-slate-400 rounded pb-2 pt-2 ${styles.button}`}>Join</button>
+        <p className="m-auto text-sm">{finished ? "Bounty has concluded" : `Ends in ${duration}`}</p>
+        {finished && !joined && (
+          <label className="m-auto border-[1px] border-slate-400 w-[100%] text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
+            <IoIosLock /> Ended
+          </label>
+        )}
+        {joined && (
+          <label className="m-auto border-[1px] border-slate-400 w-[100%] text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
+            <IoCheckmarkCircleOutline /> Joined
+          </label>
+        )}
+        {!joined && !finished && <button className={`bg-slate-400 rounded pb-2 pt-2 ${styles.button}`}>Join</button>}
       </div>
     </div>
   );

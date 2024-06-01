@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Backdrop from "../Backdrop/Backdrop";
 import Bounty, { BountyProps } from "../Bounty/Bounty";
 import BountyInfo from "../BountyInfo";
-import { AnimatePresence, motion, useTransform } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 
 type BountyListProps = {
   bounties: BountyProps[];
