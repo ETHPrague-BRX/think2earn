@@ -20,7 +20,7 @@ interface Think2EarnBountyFactoryV1 {
     function createBounty(
         string memory _name,
         string memory _description,
-        bytes32 mediaURIHash,   // Hash of the media URI
+        string memory mediaURIHash,   // Hash of the media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
@@ -35,7 +35,7 @@ interface Think2EarnBountyFactoryV1 {
     function getBountyDetails(uint256 _bountyId) external view returns (
         string memory name,
         string memory description,
-        bytes32 mediaURI,
+        string memory mediaURI,
         uint256 reward,
         uint256 duration,
         uint256 judgeTime,
@@ -61,7 +61,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     struct Bounty {
         string name;
         string description;     // IPFS hash or YouTube link
-        bytes32 mediaURIHash;   // Hash of the media URI
+        string mediaURIHash;   // Hash of the media URI
         uint256 reward;
         uint256 duration;       // in blocks
         uint256 judgeTime;      // in blocks
@@ -137,9 +137,9 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
 //     }
 
     function createBounty(
-        string memory _name,
-        string memory _description,
-        bytes32 _mediaURIHash,   // Hash of the media URI
+        string calldata _name,
+        string calldata _description,
+        string calldata _mediaURIHash,   // Hash of the media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
@@ -240,7 +240,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     function getBountyDetails(uint256 _bountyId) external view returns (
         string memory name,
         string memory description,
-        bytes32 mediaURI,
+        string memory mediaURI,
         uint256 reward,
         uint256 duration,
         uint256 judgeTime,
