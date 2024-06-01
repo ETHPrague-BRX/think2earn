@@ -41,6 +41,12 @@
       },
       {
         "indexed": false,
+        "internalType": "string",
+        "name": "mediaURI",
+        "type": "string"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "reward",
         "type": "uint256"
@@ -87,6 +93,12 @@
         "internalType": "uint256",
         "name": "submissionId",
         "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "submitter",
+        "type": "address"
       },
       {
         "indexed": false,
@@ -270,7 +282,7 @@
       },
       {
         "internalType": "string",
-        "name": "_mediaURIHash",
+        "name": "_mediaURI",
         "type": "string"
       },
       {

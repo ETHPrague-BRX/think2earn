@@ -69,10 +69,10 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     mapping(uint256 => Bounty) public bounties;
     uint256 public bountyCount = 0;     // Start counting bounties from 0
 
-    event EEGDataSubmitted(uint256 bountyId, uint256 submissionId, bytes32 eegDataHash);
+    event EEGDataSubmitted(uint256 bountyId, uint256 submissionId, address submitter, bytes32 eegDataHash);
     event EtherDeposited(address sender, uint256 amount);
     event PaymentMade(uint256 bountyId, uint256 submissionId, uint256 amount);
-    event BountyCreated(uint256 bountyId, string name, string description, uint256 reward, uint256 duration, uint256 judgeTime, uint256 maxProgress, address creator);
+    event BountyCreated(uint256 bountyId, string name, string description, string mediaURI, uint256 reward, uint256 duration, uint256 judgeTime, uint256 maxProgress, address creator);
     event BountyCompleted(uint256 bountyId, uint256 numAcceptedSubmissions);
 
     receive() external payable {
@@ -88,7 +88,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         }));
         submissionId = bounties[_bountyId].submissions.length;
 
-        emit EEGDataSubmitted(_bountyId, submissionId, _eegDataHash);
+        emit EEGDataSubmitted(_bountyId, submissionId, msg.sender, _eegDataHash);
 
         return submissionId;
     }
@@ -96,7 +96,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     function createBounty(
         string calldata _name,
         string calldata _description,
-        string calldata _mediaURIHash,   // Hash of the media URI
+        string calldata _mediaURI,   // Hash of the media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
@@ -108,7 +108,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         Bounty storage newBounty = bounties[bountyCount];
         newBounty.name = _name;
         newBounty.description = _description;
-        newBounty.mediaURIHash = _mediaURIHash;
+        newBounty.mediaURIHash = _mediaURI;
         newBounty.reward = msg.value;
         newBounty.duration = _duration;
         newBounty.judgeTime = _judgeTime;
@@ -117,7 +117,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         newBounty.creator = msg.sender;
         newBounty.isActive = true;
 
-        emit BountyCreated(bountyCount, _name, _description, msg.value, _duration, _judgeTime, _maxProgress, msg.sender);
+        emit BountyCreated(bountyCount, _name, _description, _mediaURI, msg.value, _duration, _judgeTime, _maxProgress, msg.sender);
 
         activeBountyIds.push(bountyCount);
         bountyCount++;

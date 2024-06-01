@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: Think2Earn
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -23,11 +23,10 @@ dataSources:
       abis:
         - name: Think2Earn
           file: abis/localhost_Think2Earn.json
-          # file: Think2Earn/abis/localhost_Think2Earn.json
       eventHandlers:
-        - event: BountyCreated(uint256,string,string,uint256,uint256,uint256,uint256,address)
+        - event: BountyCreated(uint256,string,string,string,uint256,uint256,uint256,uint256,address)
           handler: handleBountyCreated
-        - event: EEGDataSubmitted(uint256,uint256,bytes32)
+        - event: EEGDataSubmitted(uint256,uint256,address,bytes32)
           handler: handleEEGDataSubmitted
         - event: BountyCompleted(uint256,uint256)
           handler: handleBountyCompleted
@@ -35,6 +34,4 @@ dataSources:
           handler: handleEtherDeposited
         - event: PaymentMade(uint256,uint256,uint256)
           handler: handlePaymentMade
-      file: build/YourContract/YourContract.wasm
-      # file: Think2Earn/Think2Earn.wasm
-
+      file: src/mapping.ts
