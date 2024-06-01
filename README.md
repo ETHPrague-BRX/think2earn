@@ -90,3 +90,13 @@ yarn start
 ```
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+
+* Subraph commands:
+```
+yarn deploy --reset
+yarn clean-node
+yarn local-create
+yarn abi-copy && yarn codegen
+yarn local-ship
+```
+And then check in subgraph page
