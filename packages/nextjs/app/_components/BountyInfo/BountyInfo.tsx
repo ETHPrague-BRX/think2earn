@@ -30,39 +30,47 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
   const finished = progress >= maxProgress;
 
   return (
-    <div className={`flex flex-col gap-2 bg-slate-800 p-10 w-[100%] minh-[400px] rounded justify-between`}>
+    <div
+      className={`${styles.BountyInfo} flex flex-col gap-2 bg-slate-800 p-10 w-[100%] minh-[400px] rounded justify-between`}
+    >
       <div>
         <h3 className="text-xl">{title}</h3>
-        <p className="text-md">by {creator}</p>
-        <p className="text-sm h-[100px] line-clamp-4">{description}</p>
+        <p className="text-md text-slate-300">by {creator}</p>
+        <p className="text-sm h-[100px] line-clamp-4 text-slate-400">{description}</p>
       </div>
       <div className="flex flex-col gap-1 mb-4">
-        <label>
+        <label
+          className={`${progress >= maxProgress ? "text-red-500" : ""} ${
+            progress / maxProgress >= 0.75 && progress < maxProgress ? "text-orange-500" : ""
+          }`}
+        >
           {progress} / {maxProgress}
         </label>
         <label>Reward: {reward} ETH</label>
       </div>
       <div className="flex flex-col gap-2">
-        <p className="m-auto text-sm">{finished ? "Bounty has concluded" : `Ends in ${duration}`}</p>
+        <p className="m-auto text-sm text-slate-300">
+          {finished ? "Bounty has concluded" : `Ends in ${duration} blocks`}
+        </p>
         {finished && !joined && (
-          <label className="m-auto border-[1px] border-slate-400 w-[100%] text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
+          <label className="m-auto border-[1px] border-indigo-400 w-[100%] text-indigo-400 text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
             <IoIosLock /> Ended
           </label>
         )}
         {joined && (
-          <label className="m-auto border-[1px] border-slate-400 w-[100%] text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
+          <label className="m-auto border-[1px] border-indigo-400 text-indigo-400 w-[100%] text-center pb-2 pt-2 rounded flex gap-2 items-center justify-center">
             <IoCheckmarkCircleOutline /> Joined
           </label>
         )}
         {!joined && !finished && (
           <div className={styles.buttonWrapper}>
-            <button className={`w-[100%] bg-slate-400 rounded pb-2 pt-2 ${styles.button} text-center`}>
+            <button className={`w-[100%] bg-indigo-400 rounded pb-2 pt-2 ${styles.button} text-center`}>
               <div className="flex gap-2 align-center justify-center text-center">
                 {/* @ts-ignore */}
                 <IoIosDownload className="mt-auto mb-auto" /> <span>Download Resources</span>
               </div>
             </button>
-            <div className={`${styles.button} w-[100%] bg-slate-400 rounded pb-2 pt-2 pl-8 pr-8`}>
+            <div className={`${styles.button} w-[100%] bg-indigo-400 rounded pb-2 pt-2 pl-8 pr-8`}>
               <label htmlFor="files" className={`cursor-pointer flex gap-2 items-center justify-center text-center`}>
                 {/* @ts-ignore */}
                 <IoCloudUpload className="mt-auto mb-auto" />
@@ -80,7 +88,7 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
         )}
         {file && <p className="m-auto mt-4">{file.name}</p>}
         {file && (
-          <button className={`w-[100%] bg-green-500 rounded pb-2 pt-2 ${styles.button} text-center`}>Submit</button>
+          <button className={`w-[100%] bg-green-400 rounded pb-2 pt-2 ${styles.button} text-center`}>Submit</button>
         )}
       </div>
     </div>
