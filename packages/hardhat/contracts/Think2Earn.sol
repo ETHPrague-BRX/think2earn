@@ -67,7 +67,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
 
     uint256[] public activeBountyIds;
     mapping(uint256 => Bounty) public bounties;
-    uint256 public bountyCount = 1;     // Start counting bounties from 1
+    uint256 public bountyCount = 0;     // Start counting bounties from 0
 
     event EEGDataSubmitted(uint256 indexed bountyId, uint256 indexed submissionId, bytes32 eegDataHash);
     event EtherDeposited(address indexed sender, uint256 amount);
@@ -204,9 +204,9 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     }
 
     function getBounties() external view returns (Bounty[] memory) {
-        Bounty[] memory allBounties = new Bounty[](bountyCount - 1);
-        for (uint256 i = 1; i < bountyCount; i++) {
-            allBounties[i - 1] = bounties[i];
+        Bounty[] memory allBounties = new Bounty[](activeBountyIds.length);
+        for (uint256 i = 0; i < bountyCount; i++) {
+            allBounties[i] = bounties[activeBountyIds[i]];
         }
         return allBounties;
     }
