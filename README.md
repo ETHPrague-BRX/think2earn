@@ -95,6 +95,7 @@ Visit your app on: `http://localhost:3000`. You can interact with your smart con
 ```
 yarn deploy --reset
 yarn clean-node
+yarn run-node
 yarn local-create
 yarn abi-copy && yarn codegen
 yarn local-ship
