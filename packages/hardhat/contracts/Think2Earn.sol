@@ -79,6 +79,10 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         emit EtherDeposited(msg.sender, msg.value);
     }
 
+    constructor() {
+        createBounty("Cat", "is nice?", "https://cat.info/", 150, 10, 5);
+    }
+
     function submitEEGData(uint256 _bountyId, bytes32 _eegDataHash) external returns (uint256 submissionId) {
         require(_eegDataHash != 0, "Invalid EEG data hash");
 
@@ -94,13 +98,13 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     }
 
     function createBounty(
-        string calldata _name,
-        string calldata _description,
-        string calldata _mediaURI,   // Hash of the media URI
+        string memory _name,
+        string memory _description,
+        string memory _mediaURI,   // Hash of the media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
-    ) external payable {
+    ) public payable {
         require(bytes(_name).length > 0, "Bounty name cannot be empty");
         require(bytes(_description).length > 0, "Bounty description cannot be empty");
         require(_duration > 0, "Bounty duration must be greater than zero");
