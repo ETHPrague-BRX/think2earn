@@ -1,35 +1,59 @@
-import { BigInt, Address } from "@graphprotocol/graph-ts";
+import { BigInt } from "@graphprotocol/graph-ts";
 import {
-  YourContract,
-  GreetingChange,
-} from "../generated/YourContract/YourContract";
-import { Greeting, Sender } from "../generated/schema";
+  Think2Earn,
+  BountyCreated,
+  EEGDataSubmitted,
+  BountyCompleted,
+  EtherDeposited,
+  PaymentMade
+} from "../generated/Think2Earn/Think2Earn";
+import { Bounty, Submission, Deposit, Payment, User } from "../generated/schema";
 
-export function handleGreetingChange(event: GreetingChange): void {
-  let senderString = event.params.greetingSetter.toHexString();
+export function handleBountyCreated(event: BountyCreated): void {
+  let bounty = new Bounty(event.params.bountyId.toString());
+  bounty.name = event.params.name;
+  bounty.description = event.params.description;
+  bounty.mediaURIHash = event.params.mediaURIHash;
+  bounty.reward = event.params.reward;
+  bounty.duration = event.params.duration;
+  bounty.judgeTime = event.params.judgeTime;
+  bounty.maxProgress = event.params.maxProgress;
+  bounty.creator = event.params.creator;
+  bounty.creationBlock = event.block.number;
+  bounty.isActive = true;
 
-  let sender = Sender.load(senderString);
+  bounty.save();
+}
 
-  if (sender === null) {
-    sender = new Sender(senderString);
-    sender.address = event.params.greetingSetter;
-    sender.createdAt = event.block.timestamp;
-    sender.greetingCount = BigInt.fromI32(1);
-  } else {
-    sender.greetingCount = sender.greetingCount.plus(BigInt.fromI32(1));
+export function handleEEGDataSubmitted(event: EEGDataSubmitted): void {
+  let submissionId = event.params.bountyId.toString() + "-" + event.params.submissionId.toString();
+  let submission = new Submission(submissionId);
+  submission.bounty = event.params.bountyId.toString();
+  submission.submitter = event.params.submitter;
+  submission.eegDataHash = event.params.eegDataHash;
+  submission.save();
+}
+
+export function handleBountyCompleted(event: BountyCompleted): void {
+  let bounty = Bounty.load(event.params.bountyId.toString());
+  if (bounty !== null) {
+    bounty.isActive = false;
+    bounty.save();
   }
+}
 
-  let greeting = new Greeting(
-    event.transaction.hash.toHex() + "-" + event.logIndex.toString()
-  );
+export function handleEtherDeposited(event: EtherDeposited): void {
+  let deposit = new Deposit(event.transaction.hash.toHex() + "-" + event.logIndex.toString());
+  deposit.sender = event.params.sender;
+  deposit.amount = event.params.amount;
+  deposit.save();
+}
 
-  greeting.greeting = event.params.newGreeting;
-  greeting.sender = senderString;
-  greeting.premium = event.params.premium;
-  greeting.value = event.params.value;
-  greeting.createdAt = event.block.timestamp;
-  greeting.transactionHash = event.transaction.hash.toHex();
-
-  greeting.save();
-  sender.save();
+export function handlePaymentMade(event: PaymentMade): void {
+  let paymentId = event.params.bountyId.toString() + "-" + event.params.submissionId.toString();
+  let payment = new Payment(paymentId);
+  payment.bounty = event.params.bountyId.toString();
+  payment.submission = event.params.submissionId.toString();
+  payment.amount = event.params.amount;
+  payment.save();
 }
