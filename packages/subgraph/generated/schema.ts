@@ -188,19 +188,6 @@ export class Bounty extends Entity {
     );
   }
 
-  get completed(): boolean {
-    let value = this.get("completed");
-    if (!value || value.kind == ValueKind.NULL) {
-      return false;
-    } else {
-      return value.toBoolean();
-    }
-  }
-
-  set completed(value: boolean) {
-    this.set("completed", Value.fromBoolean(value));
-  }
-
   get numAcceptedSubmissions(): BigInt {
     let value = this.get("numAcceptedSubmissions");
     if (!value || value.kind == ValueKind.NULL) {

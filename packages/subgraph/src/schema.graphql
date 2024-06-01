@@ -2,7 +2,7 @@ type Bounty @entity {
   id: ID!
   name: String!
   description: String!
-  mediaURIHash: String!
+  mediaURI: String!
   reward: BigInt!
   duration: BigInt!
   judgeTime: BigInt!

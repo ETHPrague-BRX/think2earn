@@ -11,13 +11,13 @@ interface Think2EarnBountyRegistry {
 
 interface Think2EarnBountyFactoryV1 {
     // seller methods
-    function submitEEGData(uint256 _bountyId, bytes32 _eegDataHash) external returns (uint256 submissionId);
+    function submitEEGData(uint256 _bountyId, bytes calldata _eegDataHash) external returns (uint256 submissionId);
 
     // buyer methods
     function createBounty(
         string memory _name,
         string memory _description,
-        string memory mediaURIHash,   // Hash of the media URI
+        string memory mediaURI,   // Hash of the media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
@@ -45,7 +45,7 @@ interface Think2EarnBountyFactoryV1 {
     function getVersion() external view returns (uint256);
     struct Submission {
         address submitter;
-        bytes32 eegDataHash;    // Hash of the EEG data
+        bytes eegDataHash;    // Hash of the EEG data
     }
 }
 
@@ -54,7 +54,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     struct Bounty {
         string name;
         string description;     // IPFS hash or YouTube link
-        string mediaURIHash;   // Hash of the media URI
+        string mediaURI;   // media URI
         uint256 reward;
         uint256 duration;       // in blocks
         uint256 judgeTime;      // in blocks
@@ -69,7 +69,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     mapping(uint256 => Bounty) public bounties;
     uint256 public bountyCount = 0;     // Start counting bounties from 0
 
-    event EEGDataSubmitted(uint256 bountyId, uint256 submissionId, address submitter, bytes32 eegDataHash);
+    event EEGDataSubmitted(uint256 bountyId, uint256 submissionId, address submitter, bytes eegDataHash);
     event EtherDeposited(address sender, uint256 amount);
     event PaymentMade(uint256 bountyId, uint256 submissionId, uint256 amount);
     event BountyCreated(uint256 bountyId, string name, string description, string mediaURI, uint256 reward, uint256 duration, uint256 judgeTime, uint256 maxProgress, address creator);
@@ -83,8 +83,8 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         createBounty("Cat", "is nice?", "https://cat.info/", 150, 10, 5);
     }
 
-    function submitEEGData(uint256 _bountyId, bytes32 _eegDataHash) external returns (uint256 submissionId) {
-        require(_eegDataHash != 0, "Invalid EEG data hash");
+    function submitEEGData(uint256 _bountyId, bytes calldata _eegDataHash) external returns (uint256 submissionId) {
+        require(_eegDataHash.length > 0, "Invalid EEG data hash");
 
         bounties[_bountyId].submissions.push(Submission({
             submitter: msg.sender,
@@ -100,7 +100,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
     function createBounty(
         string memory _name,
         string memory _description,
-        string memory _mediaURI,   // Hash of the media URI
+        string memory _mediaURI,   // media URI
         uint256 _duration,
         uint256 _judgeTime,
         uint256 _maxProgress
@@ -112,7 +112,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         Bounty storage newBounty = bounties[bountyCount];
         newBounty.name = _name;
         newBounty.description = _description;
-        newBounty.mediaURIHash = _mediaURI;
+        newBounty.mediaURI = _mediaURI;
         newBounty.reward = msg.value;
         newBounty.duration = _duration;
         newBounty.judgeTime = _judgeTime;
@@ -194,7 +194,7 @@ contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
         return (
             bounty.name,
             bounty.description,
-            bounty.mediaURIHash,
+            bounty.mediaURI,
             bounty.reward,
             bounty.duration,
             bounty.judgeTime,

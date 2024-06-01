@@ -1,21 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import BountyCreator from "./_components/BountyCreator";
 import BountyList from "./_components/BountyList";
 import data from "./_components/BountyList/data.json";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      // document.querySelector("video").defaultPlaybackRate = 0.5;
-      // document.querySelector("video").playbackRate = 0.5;
-      // videoRef?.current?.setAttribute("defaultPlaybackRate", "0.5");
-    }
-  }, []);
   return (
     <>
       <div className="w-[100vw] h-[100vh] overflow-x-hidden bg-[#00000033]">

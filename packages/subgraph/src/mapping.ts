@@ -13,7 +13,7 @@ export function handleBountyCreated(event: BountyCreated): void {
   let bounty = new Bounty(event.params.bountyId.toString());
   bounty.name = event.params.name;
   bounty.description = event.params.description;
-  bounty.mediaURIHash = event.params.mediaURI;
+  bounty.mediaURI = event.params.mediaURI;
   bounty.reward = event.params.reward;
   bounty.duration = event.params.duration;
   bounty.judgeTime = event.params.judgeTime;

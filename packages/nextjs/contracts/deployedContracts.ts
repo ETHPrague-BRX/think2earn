@@ -7,13 +7,18 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Think2Earn: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
       abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
         {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "bountyId",
               type: "uint256",
@@ -32,7 +37,7 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "bountyId",
               type: "uint256",
@@ -47,6 +52,12 @@ const deployedContracts = {
               indexed: false,
               internalType: "string",
               name: "description",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "mediaURI",
               type: "string",
             },
             {
@@ -74,7 +85,7 @@ const deployedContracts = {
               type: "uint256",
             },
             {
-              indexed: true,
+              indexed: false,
               internalType: "address",
               name: "creator",
               type: "address",
@@ -87,16 +98,22 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "bountyId",
               type: "uint256",
             },
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "submissionId",
               type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "submitter",
+              type: "address",
             },
             {
               indexed: false,
@@ -112,7 +129,7 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "address",
               name: "sender",
               type: "address",
@@ -131,13 +148,13 @@ const deployedContracts = {
           anonymous: false,
           inputs: [
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "bountyId",
               type: "uint256",
             },
             {
-              indexed: true,
+              indexed: false,
               internalType: "uint256",
               name: "submissionId",
               type: "uint256",
@@ -280,7 +297,7 @@ const deployedContracts = {
             },
             {
               internalType: "string",
-              name: "_mediaURIHash",
+              name: "_mediaURI",
               type: "string",
             },
             {
@@ -312,6 +329,88 @@ const deployedContracts = {
               internalType: "uint256[]",
               name: "",
               type: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getBounties",
+          outputs: [
+            {
+              components: [
+                {
+                  internalType: "string",
+                  name: "name",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "description",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "mediaURIHash",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "reward",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "duration",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "judgeTime",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "maxProgress",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "creationBlock",
+                  type: "uint256",
+                },
+                {
+                  internalType: "address",
+                  name: "creator",
+                  type: "address",
+                },
+                {
+                  internalType: "bool",
+                  name: "isActive",
+                  type: "bool",
+                },
+                {
+                  components: [
+                    {
+                      internalType: "address",
+                      name: "submitter",
+                      type: "address",
+                    },
+                    {
+                      internalType: "bytes32",
+                      name: "eegDataHash",
+                      type: "bytes32",
+                    },
+                  ],
+                  internalType: "struct Think2EarnBountyFactoryV1.Submission[]",
+                  name: "submissions",
+                  type: "tuple[]",
+                },
+              ],
+              internalType: "struct Think2Earn.Bounty[]",
+              name: "",
+              type: "tuple[]",
             },
           ],
           stateMutability: "view",
@@ -393,6 +492,11 @@ const deployedContracts = {
             {
               internalType: "uint256",
               name: "submissionsLength",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "currentProgress",
               type: "uint256",
             },
           ],

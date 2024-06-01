@@ -14,8 +14,6 @@ const BountyList: React.FC<BountyListProps> = () => {
 
   const { bounties, bountyCount } = useBounties();
 
-  console.log(bounties);
-
   return (
     <div className="p-8 w-[100%]">
       <p className="text-left ml-0">{parseInt(bountyCount)} bounties found</p>

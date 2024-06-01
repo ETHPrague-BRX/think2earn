@@ -9,7 +9,7 @@ dataSources:
     network: localhost
     source:
       abi: Think2Earn
-      address: "0x610178dA211FEF7D417bC0e6FeD39F05609AD788"
+      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
@@ -26,7 +26,7 @@ dataSources:
       eventHandlers:
         - event: BountyCreated(uint256,string,string,string,uint256,uint256,uint256,uint256,address)
           handler: handleBountyCreated
-        - event: EEGDataSubmitted(uint256,uint256,address,bytes32)
+        - event: EEGDataSubmitted(uint256,uint256,address,bytes)
           handler: handleEEGDataSubmitted
         - event: BountyCompleted(uint256,uint256)
           handler: handleBountyCompleted
