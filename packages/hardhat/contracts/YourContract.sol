@@ -49,7 +49,7 @@ interface Think2EarnBountyFactoryV1 {
     }
 }
 
-contract Think2Earn is Think2EarnBountyFactoryV1, ReentrancyGuard {
+contract YourContract is Think2EarnBountyFactoryV1, ReentrancyGuard {
 
     struct Bounty {
         string name;

@@ -1,26 +1,40 @@
 specVersion: 0.0.4
-description: Greetings
+description: Think2Earn Subgraph
 repository: https://github.com/scaffold-eth/se-2/packages/subgraph/
 schema:
-  file: ./src/schema.graphql
+  file: src/schema.graphql
 dataSources:
   - kind: ethereum/contract
-    name: YourContract
+    name: Think2Earn
     network: localhost
     source:
-      abi: YourContract
+      abi: Think2Earn
       address: "0x5FbDB2315678afecb367f032d93F642f64180aa3"
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
-        - Greeting
-        - Sender
+        - Bounty
+        - Submission
+        - Deposit
+        - Payment
+        - User
       abis:
-        - name: YourContract
-          file: ./abis/localhost_YourContract.json
+        - name: Think2Earn
+          file: abis/localhost_Think2Earn.json
+          # file: Think2Earn/abis/localhost_Think2Earn.json
       eventHandlers:
-        - event: GreetingChange(indexed address,string,bool,uint256)
-          handler: handleGreetingChange
-      file: ./src/mapping.ts
+        - event: BountyCreated(uint256,string,string,uint256,uint256,uint256,uint256,address)
+          handler: handleBountyCreated
+        - event: EEGDataSubmitted(uint256,uint256,bytes32)
+          handler: handleEEGDataSubmitted
+        - event: BountyCompleted(uint256,uint256)
+          handler: handleBountyCompleted
+        - event: EtherDeposited(address,uint256)
+          handler: handleEtherDeposited
+        - event: PaymentMade(uint256,uint256,uint256)
+          handler: handlePaymentMade
+      file: build/YourContract/YourContract.wasm
+      # file: Think2Earn/Think2Earn.wasm
+

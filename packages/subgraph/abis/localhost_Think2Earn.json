@@ -3,7 +3,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "bountyId",
         "type": "uint256"
@@ -22,7 +22,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "bountyId",
         "type": "uint256"
@@ -64,7 +64,7 @@
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "creator",
         "type": "address"
@@ -77,13 +77,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "bountyId",
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "submissionId",
         "type": "uint256"
@@ -102,7 +102,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "address",
         "name": "sender",
         "type": "address"
@@ -121,13 +121,13 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "bountyId",
         "type": "uint256"
       },
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "uint256",
         "name": "submissionId",
         "type": "uint256"
@@ -309,6 +309,88 @@
   },
   {
     "inputs": [],
+    "name": "getBounties",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "internalType": "string",
+            "name": "mediaURIHash",
+            "type": "string"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reward",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "duration",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "judgeTime",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxProgress",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "creationBlock",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "creator",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActive",
+            "type": "bool"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "submitter",
+                "type": "address"
+              },
+              {
+                "internalType": "bytes32",
+                "name": "eegDataHash",
+                "type": "bytes32"
+              }
+            ],
+            "internalType": "struct Think2EarnBountyFactoryV1.Submission[]",
+            "name": "submissions",
+            "type": "tuple[]"
+          }
+        ],
+        "internalType": "struct Think2Earn.Bounty[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "getBountyCount",
     "outputs": [
       {
@@ -383,6 +465,11 @@
       {
         "internalType": "uint256",
         "name": "submissionsLength",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "currentProgress",
         "type": "uint256"
       }
     ],
