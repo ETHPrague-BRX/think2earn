@@ -1,17 +1,45 @@
-type Greeting @entity {
+type Bounty @entity {
   id: ID!
-  sender: Sender!
-  greeting: String!
-  premium: Boolean
-  value: BigInt
-  createdAt: BigInt!
-  transactionHash: String!
+  name: String!
+  description: String!
+  mediaURIHash: String!
+  reward: BigInt!
+  duration: BigInt!
+  judgeTime: BigInt!
+  maxProgress: BigInt!
+  creationBlock: BigInt!
+  creator: Bytes!
+  isActive: Boolean!
+  submissions: [Submission!] @derivedFrom(field: "bounty")
+  completed: Boolean!
+  numAcceptedSubmissions: BigInt!
 }
 
-type Sender @entity {
+type Submission @entity {
+  id: ID!
+  bounty: Bounty!
+  submitter: Bytes!
+  eegDataHash: Bytes!
+}
+
+type Deposit @entity {
+  id: ID!
+  sender: Bytes!
+  amount: BigInt!
+}
+
+type Payment @entity {
+  id: ID!
+  bounty: Bounty!
+  submission: Submission!
+  amount: BigInt!
+}
+
+type User @entity {
   id: ID!
   address: Bytes!
-  greetings: [Greeting!] @derivedFrom(field: "sender")
-  createdAt: BigInt!
-  greetingCount: BigInt!
+  submissionCount: BigInt!
+  depositCount: BigInt!
+  paymentReceivedCount: BigInt!
 }
+
