@@ -5,6 +5,8 @@
   <a href="https://scaffoldeth.io">Website</a>
 </h4>
 
+![DALLE2024-06-0114 30 55-CreateaseriesofminimalisticlogosforacryptoprojectfeaturinganimageofabrainandincorporatingcryptoconceptsliketheEthereumETHlog-ezgif com-webp-to-jpg-converter](https://github.com/ETHPrague-BRX/think2earn/assets/83903147/d74bf393-d6a0-46de-a283-d91018edd5c8)
+
 
 🧪 Brain Crypto Interfaces suggests the use of incentives for uploading brain data to improve open source classification models. Commmunication privacy and security between users can be leveraged with Waku communication protocols.  
 
