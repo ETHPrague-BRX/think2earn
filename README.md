@@ -107,4 +107,6 @@ yarn local-ship
 And then check in subgraph page
 ![graph](https://github.com/ETHPrague-BRX/think2earn/assets/4788589/d36eed42-ca66-4cff-ad01-88200c7e3997)
 
+Optimism Sepolia deployment adress:
+https://sepolia-optimism.etherscan.io/address/0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee
 
