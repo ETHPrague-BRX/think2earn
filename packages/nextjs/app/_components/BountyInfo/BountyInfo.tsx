@@ -2,6 +2,7 @@ import { useState } from "react";
 import styles from "./BountyInfo.module.scss";
 import { IoIosDownload, IoIosLock } from "react-icons/io";
 import { IoCheckmarkCircleOutline, IoCloudUpload } from "react-icons/io5";
+import { useAccount } from "wagmi";
 import { Bounty } from "~~/types/bounty";
 
 export type BountyInfoProps = Bounty & {
@@ -16,6 +17,7 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
   duration,
   progress,
   maxProgress,
+  submissions,
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +28,8 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
     }
   };
 
-  const joined = Math.random() > 0.5 ? false : true;
+  const account = useAccount();
+  const joined = submissions.some(submission => submission.submitter.toLowerCase() === account.address?.toLowerCase());
   const finished = progress >= maxProgress;
 
   return (

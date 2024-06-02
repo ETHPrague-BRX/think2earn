@@ -1,14 +1,25 @@
 import styles from "./Bounty.module.scss";
 import { IoIosLock } from "react-icons/io";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
+import { useAccount } from "wagmi";
 import { Bounty as BountyType } from "~~/types/bounty";
 
 export type BountyProps = BountyType & {
   progress: number;
 };
 
-const Bounty: React.FC<BountyProps> = ({ title, description, creator, reward, duration, progress, maxProgress }) => {
-  const joined = Math.random() > 0.5 ? false : true;
+const Bounty: React.FC<BountyProps> = ({
+  title,
+  description,
+  creator,
+  reward,
+  duration,
+  progress,
+  maxProgress,
+  submissions,
+}) => {
+  const account = useAccount();
+  const joined = submissions.some(submission => submission.submitter.toLowerCase() === account.address?.toLowerCase());
   const finished = progress >= maxProgress;
 
   return (

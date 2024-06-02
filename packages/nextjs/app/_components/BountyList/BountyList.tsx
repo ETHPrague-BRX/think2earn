@@ -1,15 +1,11 @@
 import { useState } from "react";
 import Backdrop from "../Backdrop/Backdrop";
-import Bounty, { BountyProps } from "../Bounty/Bounty";
+import Bounty from "../Bounty/Bounty";
 import BountyInfo from "../BountyInfo";
 import { AnimatePresence, motion } from "framer-motion";
 import useBounties from "~~/hooks/useBounties";
 
-type BountyListProps = {
-  bounties: BountyProps[];
-};
-
-const BountyList: React.FC<BountyListProps> = () => {
+const BountyList = () => {
   const [selectedId, setSelectedId] = useState<number | null>(null);
 
   const { bounties, bountyCount } = useBounties();

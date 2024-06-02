@@ -3,24 +3,10 @@ import Think2Earn from "../../hardhat/deployments/localhost/Think2Earn.json";
 import { GET_BOUNTIES } from "./queries";
 import { useQuery } from "@apollo/client";
 import { formatEther, parseEther } from "viem";
-import { useAccount, useBalance, useContractReads, useWriteContract } from "wagmi";
+import { useAccount, useBalance, useWriteContract } from "wagmi";
 import { Bounty } from "~~/types/bounty";
 
 const MAXUINT256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935n;
-
-export interface Asset {
-  priceFeed: string;
-  tokenNum: string;
-  tokenDen: string;
-  tokenAmount: bigint;
-  initPrice: bigint;
-}
-
-type ContractReadsOutput = {
-  data?: any[];
-  isError: boolean;
-  isLoading: boolean;
-};
 
 const useBounties = () => {
   const account = useAccount();
@@ -46,8 +32,8 @@ const useBounties = () => {
 
   const createBounty = async (bountyData: any) => {
     await writeContract({
-      address: Think2Earn.address,
-      abi: Think2Earn.abi,
+      address: bountiesContract.address,
+      abi: bountiesContract.abi,
       functionName: "createBounty",
       value: parseEther(bountyData.reward),
       args: [
@@ -63,12 +49,16 @@ const useBounties = () => {
   };
 
   const approve = async () => {
-    writeContract({
-      address: Think2Earn.address,
-      abi: Think2Earn.abi,
-      functionName: "approve",
-      args: [account.address, MAXUINT256],
-    });
+    if (account.address) {
+      writeContract({
+        address: bountiesContract.address,
+        abi: bountiesContract.abi,
+        functionName: "approve",
+        args: [account.address, MAXUINT256],
+      });
+    } else {
+      alert("Please connect your wallet to approve the contract");
+    }
   };
 
   useEffect(() => {
@@ -94,7 +84,8 @@ const useBounties = () => {
           reward: parseInt(formatEther(bounty.reward)),
           duration: bounty.duration,
           maxProgress: parseInt(bounty.maxProgress),
-          progress: parseInt(bounty.numAcceptedSubmissions),
+          progress: bounty.submissions.length,
+          submissions: bounty.submissions,
         } as Bounty;
       }) || [],
     );

@@ -1,3 +1,9 @@
+export type Submission = {
+  id: string;
+  submitter: string;
+  eegDataHash: string;
+};
+
 export type Bounty = {
   title: string;
   description: string;
@@ -6,4 +12,5 @@ export type Bounty = {
   duration: string;
   maxProgress: number;
   progress: number;
+  submissions: Submission[];
 };

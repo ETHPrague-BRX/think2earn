@@ -11,12 +11,14 @@ export const GET_BOUNTIES = gql`
       duration
       judgeTime
       maxProgress
-      mediaURIHash
+      mediaURI
       name
       numAcceptedSubmissions
       reward
       submissions {
+        eegDataHash
         id
+        submitter
       }
     }
   }

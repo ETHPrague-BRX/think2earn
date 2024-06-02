@@ -2,7 +2,6 @@
 
 import BountyCreator from "./_components/BountyCreator";
 import BountyList from "./_components/BountyList";
-import data from "./_components/BountyList/data.json";
 import type { NextPage } from "next";
 
 const Home: NextPage = () => {
@@ -16,7 +15,7 @@ const Home: NextPage = () => {
           </h2>
           <p></p>
           <BountyCreator />
-          <BountyList bounties={data} />
+          <BountyList />
         </div>
       </div>
     </>
