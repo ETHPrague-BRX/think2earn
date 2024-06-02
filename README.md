@@ -105,3 +105,6 @@ yarn abi-copy && yarn codegen
 yarn local-ship
 ```
 And then check in subgraph page
+![graph](https://github.com/ETHPrague-BRX/think2earn/assets/4788589/d36eed42-ca66-4cff-ad01-88200c7e3997)
+
+
