@@ -109,7 +109,3 @@ And then check in subgraph page
 
 Optimism Sepolia deployment address:
 https://sepolia-optimism.etherscan.io/address/0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee
-
-Mantle mainnet deployment address:
-https://mantlescan.xyz/address/0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee#code
-
