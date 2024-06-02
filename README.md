@@ -47,7 +47,7 @@ The platform supports the creation and management of bounties with detailed attr
 
 This platform is a crypto marketplace for buying and selling BCI data, benefiting both data buyers looking to enhance their models and BCI owners seeking to monetize their data. Inspired by Vitalik's blogpost on techno-optimism, it leverages incentives to create datasets that can be used for decoding brain inputs and controlling hardware, eventually minimizing the feedback loop between humans and machines. 
 
-![Screenshot 2024-06-01 at 22-18-57 Think2Earn Contract Flowchart with User Interactions](https://github.com/ETHPrague-BRX/think2earn/assets/83903147/c3e1e779-f1b7-41a3-811a-9e9c4230638b)
+![Screenshot 2024-06-02 at 09-43-29 Think2Earn Contract Flowchart with User Interactions](https://github.com/ETHPrague-BRX/think2earn/assets/83903147/3a4e144b-9e8c-4401-a87a-767fed905d8b)
 
 
 ## Requirements
