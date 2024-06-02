@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Think2Earn from "../../hardhat/deployments/localhost/Think2Earn.json";
 import { GET_BOUNTIES } from "./queries";
 import { useQuery } from "@apollo/client";
-import { formatEther, parseEther } from "viem";
+import { formatEther, keccak256, parseEther } from "viem";
 import { useAccount, useBalance, useWriteContract } from "wagmi";
 import { Bounty } from "~~/types/bounty";
+import { fileToByteString } from "~~/utils/fileToByteString";
 
 const MAXUINT256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935n;
 
@@ -61,6 +62,24 @@ const useBounties = () => {
     }
   };
 
+  const submitEEGData = async (bountyId: number, eegData?: File) => {
+    if (account.address && eegData) {
+      const byteString = await fileToByteString(eegData);
+      //  @ts-ignore
+      const encodedByteString = keccak256(byteString.toString());
+      await writeContract({
+        address: bountiesContract.address,
+        abi: bountiesContract.abi,
+        functionName: "submitEEGData",
+        args: [bountyId, encodedByteString],
+      });
+      return true;
+    } else {
+      alert("Please connect your wallet to submit EEG data");
+      return false;
+    }
+  };
+
   useEffect(() => {
     if (isPending) setLatestTxMessage("Transaction pending...");
     else if (error) setLatestTxMessage(`Transaction failed: ${error.message}`);
@@ -96,6 +115,7 @@ const useBounties = () => {
     bountyCount,
     approve,
     createBounty,
+    submitEEGData,
     latestTxMessage,
     latestHash: hash,
     latestWriteError: error,

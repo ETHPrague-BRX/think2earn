@@ -3,10 +3,13 @@ import styles from "./BountyInfo.module.scss";
 import { IoIosDownload, IoIosLock } from "react-icons/io";
 import { IoCheckmarkCircleOutline, IoCloudUpload } from "react-icons/io5";
 import { useAccount } from "wagmi";
+import useBounties from "~~/hooks/useBounties";
 import { Bounty } from "~~/types/bounty";
 
 export type BountyInfoProps = Bounty & {
+  id: number;
   progress: number;
+  close: () => void;
 };
 
 const BountyInfo: React.FC<BountyInfoProps> = ({
@@ -18,13 +21,33 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
   progress,
   maxProgress,
   submissions,
+  id,
+  close,
 }) => {
   const [file, setFile] = useState<File | null>(null);
   const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      console.log(file);
       setFile(file);
+    }
+  };
+
+  const { approve, submitEEGData } = useBounties();
+
+  const handleSubmit = async () => {
+    if (file) {
+      await approve().then(async () => {
+        const result = await submitEEGData(id, file);
+        if (result) {
+          alert("Submission successful");
+          close();
+        } else {
+          alert("Submission failed");
+          close();
+        }
+      });
+    } else {
+      alert("Please select a file to submit");
     }
   };
 
@@ -91,7 +114,12 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
         )}
         {file && <p className="m-auto mt-4">{file.name}</p>}
         {file && (
-          <button className={`w-[100%] bg-green-400 rounded pb-2 pt-2 ${styles.button} text-center`}>Submit</button>
+          <button
+            className={`w-[100%] bg-green-400 rounded pb-2 pt-2 ${styles.button} text-center`}
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
         )}
       </div>
     </div>

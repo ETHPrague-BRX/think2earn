@@ -25,7 +25,7 @@ const BountyList = () => {
           {selectedId !== null && (
             <motion.div layoutId={selectedId}>
               <Backdrop onClick={() => setSelectedId(null)}>
-                <BountyInfo {...bounties[selectedId]} />
+                <BountyInfo {...bounties[selectedId]} id={selectedId} close={() => setSelectedId(null)} />
               </Backdrop>
             </motion.div>
           )}
