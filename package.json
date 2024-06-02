@@ -44,7 +44,7 @@
     "abi-copy": "yarn workspace @se-2/subgraph abi-copy",
     "codegen": "yarn workspace @se-2/subgraph codegen"
   },
-  "packageManager": "yarn@3.2.3",
+  "packageManager": "yarn@1.22.22",
   "devDependencies": {
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
