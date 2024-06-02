@@ -91,6 +91,7 @@ This command deploys a test smart contract to the local network. The contract is
 ```
 yarn start
 ```
+<img width="1447" alt="Screenshot 2024-06-02 at 11 00 30" src="https://github.com/ETHPrague-BRX/think2earn/assets/85355882/5f51465b-aaa1-4499-8ecc-09ddb9e097a3">
 
 Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
 
