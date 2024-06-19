@@ -115,6 +115,12 @@ graph auth --studio KEY_FROM_GRAPH_STUDIO_PAGE
 graph codegen && graph build
 graph deploy --studio name_of_your_subgraph
 ```
+
+* Vercel deployment:
+```
+yarn vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true
+```
+
 Then check if current schema is visible under:
 https://thegraph.com/studio/subgraph/think2earn/playground
 

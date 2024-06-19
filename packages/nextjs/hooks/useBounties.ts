@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 //import Think2Earn from "../../hardhat/deployments/localhost/Think2Earn.json";
-import Think2Earn from "../../hardhat/deployments/optimismSepolia/Think2Earn.json";
+// import Think2Earn from "../../hardhat/deployments/optimismSepolia/Think2Earn.json";
+// import Think2Earn from "contracts/deployedContracts.ts"
+import deployedContracts from "~~/contracts/deployedContracts";
 import { GET_BOUNTIES } from "./queries";
 import { useQuery } from "@apollo/client";
 import { formatEther, keccak256, parseEther } from "viem";
@@ -8,6 +10,7 @@ import { useAccount, useBalance, useWriteContract } from "wagmi";
 import { Bounty } from "~~/types/bounty";
 import { fileToByteString } from "~~/utils/fileToByteString";
 
+const Think2Earn = deployedContracts[11155420].Think2Earn;
 const MAXUINT256 = 115792089237316195423570985008687907853269984665640564039457584007913129639935n;
 
 const useBounties = () => {
