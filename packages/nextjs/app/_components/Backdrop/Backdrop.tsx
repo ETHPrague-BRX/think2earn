@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 const Backdrop = ({ children, onClick }: { children: ReactNode; onClick: () => void }) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-  const handleClick = (e: MouseEvent) => {
+  // const handleClick = (e: MouseEvent) => {
+  const handleClick: React.MouseEventHandler<HTMLDivElement> = e => {
     if (wrapperRef.current === e.target) {
       onClick();
     }

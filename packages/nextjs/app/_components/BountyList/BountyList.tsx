@@ -23,7 +23,7 @@ const BountyList = () => {
         })}
         <AnimatePresence>
           {selectedId !== null && (
-            <motion.div layoutId={selectedId}>
+            <motion.div layoutId={selectedId.toString()}>
               <Backdrop onClick={() => setSelectedId(null)}>
                 <BountyInfo {...bounties[selectedId]} id={selectedId} close={() => setSelectedId(null)} />
               </Backdrop>
