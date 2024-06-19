@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import Think2Earn from "../../hardhat/deployments/localhost/Think2Earn.json";
+//import Think2Earn from "../../hardhat/deployments/localhost/Think2Earn.json";
+import Think2Earn from "../../hardhat/deployments/optimismSepolia/Think2Earn.json";
 import { GET_BOUNTIES } from "./queries";
 import { useQuery } from "@apollo/client";
 import { formatEther, keccak256, parseEther } from "viem";

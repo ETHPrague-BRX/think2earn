@@ -8,7 +8,7 @@ dataSources:
     name: Think2Earn
     network: optimism-sepolia
     source:
-      address: "0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee"
+      address: "0x5b6260d9db1e105c829704fcdc2b65e1399807ee"
       abi: Think2Earn
       startBlock: 12735238
     mapping:

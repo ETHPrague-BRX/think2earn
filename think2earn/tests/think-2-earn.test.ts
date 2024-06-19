@@ -7,8 +7,8 @@ import {
   afterAll
 } from "matchstick-as/assembly/index"
 import { BigInt, Address, Bytes } from "@graphprotocol/graph-ts"
-import { BountyCompleted } from "../generated/schema"
-import { BountyCompleted as BountyCompletedEvent } from "../generated/Think2Earn/Think2Earn"
+import { ExampleEntity } from "../generated/schema"
+import { BountyCompleted } from "../generated/Think2Earn/Think2Earn"
 import { handleBountyCompleted } from "../src/think-2-earn"
 import { createBountyCompletedEvent } from "./think-2-earn-utils"
 
@@ -33,19 +33,19 @@ describe("Describe entity assertions", () => {
   // For more test scenarios, see:
   // https://thegraph.com/docs/en/developer/matchstick/#write-a-unit-test
 
-  test("BountyCompleted created and stored", () => {
-    assert.entityCount("BountyCompleted", 1)
+  test("ExampleEntity created and stored", () => {
+    assert.entityCount("ExampleEntity", 1)
 
     // 0xa16081f360e3847006db660bae1c6d1b2e17ec2a is the default address used in newMockEvent() function
     assert.fieldEquals(
-      "BountyCompleted",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "ExampleEntity",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
       "bountyId",
       "234"
     )
     assert.fieldEquals(
-      "BountyCompleted",
-      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a-1",
+      "ExampleEntity",
+      "0xa16081f360e3847006db660bae1c6d1b2e17ec2a",
       "numAcceptedSubmissions",
       "234"
     )

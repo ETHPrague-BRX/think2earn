@@ -1,94 +1,69 @@
+import { BigInt } from "@graphprotocol/graph-ts"
 import {
-  BountyCompleted as BountyCompletedEvent,
-  BountyCreated as BountyCreatedEvent,
-  EEGDataSubmitted as EEGDataSubmittedEvent,
-  EtherDeposited as EtherDepositedEvent,
-  PaymentMade as PaymentMadeEvent
-} from "../generated/Think2Earn/Think2Earn"
-import {
+  Think2Earn,
   BountyCompleted,
   BountyCreated,
   EEGDataSubmitted,
   EtherDeposited,
   PaymentMade
-} from "../generated/schema"
+} from "../generated/Think2Earn/Think2Earn"
+import { ExampleEntity } from "../generated/schema"
 
-export function handleBountyCompleted(event: BountyCompletedEvent): void {
-  let entity = new BountyCompleted(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
+export function handleBountyCompleted(event: BountyCompleted): void {
+  // Entities can be loaded from the store using a string ID; this ID
+  // needs to be unique across all entities of the same type
+  let entity = ExampleEntity.load(event.transaction.from)
+
+  // Entities only exist after they have been saved to the store;
+  // `null` checks allow to create entities on demand
+  if (!entity) {
+    entity = new ExampleEntity(event.transaction.from)
+
+    // Entity fields can be set using simple assignments
+    entity.count = BigInt.fromI32(0)
+  }
+
+  // BigInt and BigDecimal math are supported
+  entity.count = entity.count + BigInt.fromI32(1)
+
+  // Entity fields can be set based on event parameters
   entity.bountyId = event.params.bountyId
   entity.numAcceptedSubmissions = event.params.numAcceptedSubmissions
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
+  // Entities can be written to the store with `.save()`
   entity.save()
+
+  // Note: If a handler doesn't require existing field values, it is faster
+  // _not_ to load the entity from the store. Instead, create it fresh with
+  // `new Entity(...)`, set the fields that should be updated and save the
+  // entity back to the store. Fields that were not set or unset remain
+  // unchanged, allowing for partial updates to be applied.
+
+  // It is also possible to access smart contracts from mappings. For
+  // example, the contract that has emitted the event can be connected to
+  // with:
+  //
+  // let contract = Contract.bind(event.address)
+  //
+  // The following functions can then be called on this contract to access
+  // state variables and other data:
+  //
+  // - contract.activeBountyIds(...)
+  // - contract.bounties(...)
+  // - contract.bountyCount(...)
+  // - contract.getActiveBounties(...)
+  // - contract.getBounties(...)
+  // - contract.getBountyCount(...)
+  // - contract.getBountyDetails(...)
+  // - contract.getBountySubmissions(...)
+  // - contract.getVersion(...)
+  // - contract.submitEEGData(...)
 }
 
-export function handleBountyCreated(event: BountyCreatedEvent): void {
-  let entity = new BountyCreated(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.bountyId = event.params.bountyId
-  entity.name = event.params.name
-  entity.description = event.params.description
-  entity.mediaURI = event.params.mediaURI
-  entity.reward = event.params.reward
-  entity.duration = event.params.duration
-  entity.judgeTime = event.params.judgeTime
-  entity.maxProgress = event.params.maxProgress
-  entity.creator = event.params.creator
+export function handleBountyCreated(event: BountyCreated): void {}
 
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
+export function handleEEGDataSubmitted(event: EEGDataSubmitted): void {}
 
-  entity.save()
-}
+export function handleEtherDeposited(event: EtherDeposited): void {}
 
-export function handleEEGDataSubmitted(event: EEGDataSubmittedEvent): void {
-  let entity = new EEGDataSubmitted(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.bountyId = event.params.bountyId
-  entity.submissionId = event.params.submissionId
-  entity.submitter = event.params.submitter
-  entity.eegDataHash = event.params.eegDataHash
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handleEtherDeposited(event: EtherDepositedEvent): void {
-  let entity = new EtherDeposited(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.sender = event.params.sender
-  entity.amount = event.params.amount
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
-
-export function handlePaymentMade(event: PaymentMadeEvent): void {
-  let entity = new PaymentMade(
-    event.transaction.hash.concatI32(event.logIndex.toI32())
-  )
-  entity.bountyId = event.params.bountyId
-  entity.submissionId = event.params.submissionId
-  entity.amount = event.params.amount
-
-  entity.blockNumber = event.block.number
-  entity.blockTimestamp = event.block.timestamp
-  entity.transactionHash = event.transaction.hash
-
-  entity.save()
-}
+export function handlePaymentMade(event: PaymentMade): void {}
