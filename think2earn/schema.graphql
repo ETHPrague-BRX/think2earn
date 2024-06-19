@@ -1,6 +1,0 @@
-type ExampleEntity @entity {
-  id: Bytes!
-  count: BigInt!
-  bountyId: BigInt! # uint256
-  numAcceptedSubmissions: BigInt! # uint256
-}

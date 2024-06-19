@@ -107,6 +107,17 @@ yarn local-ship
 And then check in subgraph page
 ![graph](https://github.com/ETHPrague-BRX/think2earn/assets/4788589/d36eed42-ca66-4cff-ad01-88200c7e3997)
 
+* Optimism Sepolia Graph deployment steps:
+```
+# ! Skip the graph init step, it's already the 'packages/subgraph' folder
+cp packages/subgraph
+graph auth --studio KEY_FROM_GRAPH_STUDIO_PAGE
+graph codegen && graph build
+graph deploy --studio name_of_your_subgraph
+```
+Then check if current schema is visible under:
+https://thegraph.com/studio/subgraph/think2earn/playground
+
 Optimism Sepolia deployment address:
 https://sepolia-optimism.etherscan.io/address/0x5B6260d9dB1e105c829704FcDC2b65E1399807Ee
 
