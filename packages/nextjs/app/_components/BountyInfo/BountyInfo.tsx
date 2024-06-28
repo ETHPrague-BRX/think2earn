@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styles from "./BountyInfo.module.scss";
-import { IoIosDownload, IoIosLock } from "react-icons/io";
-import { IoCheckmarkCircleOutline, IoCloudUpload } from "react-icons/io5";
+import { /*IoIosDownload,*/ IoIosLock } from "react-icons/io";
+import { IoCheckmarkCircleOutline, IoCloudUpload, IoPerson } from "react-icons/io5";
 import { useAccount } from "wagmi";
 import useBounties from "~~/hooks/useBounties";
 import { Bounty } from "~~/types/bounty";
+import { Client } from "~~/services/waku/wakuService";
 
 export type BountyInfoProps = Bounty & {
   id: number;
@@ -55,6 +56,9 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
   const joined = submissions.some(submission => submission.submitter.toLowerCase() === account.address?.toLowerCase());
   const finished = progress >= maxProgress;
 
+  const wakuClient = new Client();
+  wakuClient.init(account, (from: string, to: string, tripId: number, datetime: number, message: string) => { alert(message) }, "49a980d51f008edae0631da45dcc3285c40d8b2cf0637599016ea573ab31f60e", "0x5E594A1203eC709B56cA7f38e91E4A67853826a5"); // TODO pks? what for
+
   return (
     <div
       className={`${styles.BountyInfo} flex flex-col gap-2 bg-slate-800 p-10 w-[100%] minh-[400px] rounded justify-between`}
@@ -88,12 +92,14 @@ const BountyInfo: React.FC<BountyInfoProps> = ({
             <IoCheckmarkCircleOutline /> Joined
           </label>
         )}
+        {/* {!finished 
+        } */}
         {!joined && !finished && (
           <div className={styles.buttonWrapper}>
             <button className={`w-[100%] bg-indigo-400 rounded pb-2 pt-2 ${styles.button} text-center`}>
               <div className="flex gap-2 align-center justify-center text-center">
                 {/* @ts-ignore */}
-                <IoIosDownload className="mt-auto mb-auto" /> <span>Download Resources</span>
+                <IoPerson className="mt-auto mb-auto" /> <span>Chat</span>
               </div>
             </button>
             <div className={`${styles.button} w-[100%] bg-indigo-400 rounded pb-2 pt-2 pl-8 pr-8`}>
